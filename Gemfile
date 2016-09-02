@@ -2,8 +2,12 @@ source 'https://rubygems.org'
 
 # Pretty print your Ruby objects with style
 gem 'awesome_print'
-# Fast streaming JSON parsing and encoding library for Ruby
-gem 'yajl-ruby', require: 'yajl'
+# Ruby ODM framework for MongoDB
+gem 'mongoid', github: 'mongodb/mongoid'
+# OpenAPI-compliant CRUD interface for Rails models with documentation.
+gem 'openapi-rails'
+# Repository for collecting Locale data for Ruby on Rails I18n
+gem 'rails-i18n', '~> 5.0.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'

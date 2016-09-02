@@ -1,9 +1,52 @@
-//= require hack
 //= require prism
 //= require_self
 
-footer.footer {
-  border-top: 1px solid #ccc;
-  margin-top: 5rem;
-  padding: 3rem 0;
+@import "kube";
+
+.main {
+  margin: 2em auto 3em;
+  max-width: 1128px;
+}
+
+a {
+  text-decoration: none;
+}
+
+table {
+  font-size: 0.85em;
+  line-height: 1.4em;
+}
+
+table a {
+  display: block;
+}
+
+table .label.outline {
+  padding: 3px 7px;
+  position: relative;
+  top: -8px;
+}
+
+table tbody .col-6 {
+  padding-top: 1.5em;
+}
+
+table tbody .col-2 {
+  padding-top: 35px;
+}
+
+table tbody .col-3 {
+  padding-top: 20px;
+
+  p {
+    margin-bottom: 6px;
+  }
+}
+
+table tr:last-child td {
+  border-bottom: none;
+}
+
+.pagination .gap em {
+  background-color: transparent;
 }

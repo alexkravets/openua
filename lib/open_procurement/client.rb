@@ -1,16 +1,21 @@
 require 'net/http'
 
+require 'openssl'
+OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
+
 module OpenProcurement
   class Client
     def initialize(options={})
-      @schema  = options[:schema]  || 'http'
+      @schema  = options[:schema]  || 'https'
       @host    = options[:host]    || 'api.openprocurement.org'
       @version = options[:version] || '2.3'
     end
 
-    def tenders(uri=nil, format='')
-      uri ||= URI("#{path}/tenders")
-      params = { limit: 50 }
+    def tenders(options)
+      uri    = URI("#{path}/tenders")
+      params = options[:params] || {}
+      format = options[:format]
+
       json = request(uri, params)
       if format == 'json'
         json
@@ -21,6 +26,7 @@ module OpenProcurement
 
     def tender(id, format='')
       uri = URI("#{path}/tenders/#{id}")
+
       json = request(uri)
       if format == 'json'
         json
@@ -37,12 +43,14 @@ module OpenProcurement
 
     def request(uri, params={})
       uri.query = URI.encode_www_form(params)
+      ap "> #{uri}"
       res = Net::HTTP.get_response(uri)
 
       if res.is_a?(Net::HTTPSuccess)
         res.body
       else
-        logger.error 'Woops, request has failed.'
+        ap 'Woops, request has failed.'
+        ''
       end
     end
 

@@ -1,14 +1,13 @@
 class TendersController < ApplicationController
   def index
-    response = client.tenders
-    @next_page = response['next_page']
-    @tenders = response['data']
+    @tenders = Tender.all.page(params[:page] || 1).per(10)
   end
 
   def show
     id = params[:id]
-    json = client.tender(id)
-    @json = JSON.pretty_generate(json)
+    @tender = Tender.find_by(open_procurement_id: id)
+    @bundle = OpenProcurement::TenderBundle.find_by(open_procurement_id: id)
+    @json = JSON.pretty_generate(@bundle.data)
   end
 
   private

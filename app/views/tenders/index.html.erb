@@ -1,16 +1,86 @@
+<nav class='breadcrumb'>
+  <ul>
+    <li class='active'><em>Закупівлі</em></li>
+  </ul>
+</nav>
+
 <table>
   <thead>
     <tr>
-      <th>Tender ID</th>
-      <th>Date Modified</th>
+      <th class='col-7'>Предмет закупівлі</th>
+      <th class='col-2'>Очікувана вартість</th>
+      <th class='col-3'>Важливі дати</th>
     </tr>
   </thead>
   <tbody>
     <% @tenders.each do |t| %>
-    <tr>
-      <td><%= link_to t['id'], tenders_show_path(t['id']) %></td>
-      <td><%= t['dateModified'] %></td>
+    <tr data-id='<%= t.id %>'>
+      <td class='col-7'>
+        <span class='label outline <%= tender_status_class(t.status) %>'>
+          <%= tender_status(t.status) %>
+        </span>
+        <br/>
+        <p>
+          <%= link_to t.title, tenders_show_path(t.open_procurement_id) %>
+        </p>
+        <p>
+          <%= t.procuring_entity_name %>
+        </p>
+      </td>
+      <td class='col-2'>
+        <strong>
+          <%= number_to_currency(t.value_amount, unit: '') %>
+          <%= currency_format(t.value_currency) %>
+        </strong>
+        <br/>
+        <% if t.value_value_added_tax_included? %>
+          з ПДВ
+        <% else %>
+          без ПДВ
+        <% end %>
+      </td>
+      <td class='col-3'>
+        <% if t.date %>
+          <p>
+            Оголошено:<br/>
+            <span class='muted'>
+              <%= l(t.date, format: '%-d %b %H:%M').downcase %>
+            </span>
+          </p>
+        <% end %>
+
+        <% if t.enquiry_end_date %>
+          <p>
+            Завершення періоду уточнень:<br/>
+            <span class='muted'>
+              <%= l(t.enquiry_end_date, format: '%-d %b %H:%M').downcase %>
+            </span>
+          </p>
+        <% end %>
+
+        <% if t.tender_start_date %>
+          <p>
+            Прийом пропозицій:<br/>
+            <span class='muted'>
+              <%= l(t.tender_start_date, format: '%-d %b %H:%M').downcase %>
+              –
+              <%= l(t.tender_end_date, format: '%-d %b %H:%M').downcase %>
+            </span>
+          </p>
+        <% end %>
+
+        <% if t.status == 'complete' %>
+          <p>
+            Завершено:<br/>
+            <span class='muted'>
+              <%= l(t.date_modified, format: '%-d %b %H:%M').downcase %>
+            </span>
+          </p>
+        <% end %>
+      </td>
     </tr>
     <% end %>
   </tbody>
 </table>
+
+<%= paginate @tenders %>
