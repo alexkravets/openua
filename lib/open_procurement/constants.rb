@@ -1,6 +1,7 @@
 module OpenProcurement
   module Constants
     TENDER_STATUS_OPTIONS = {
+      'active'               => 'Активна',
       'active.enquiries'     => 'Період уточнень', #(уточнення)
       'active.tendering'     => 'Прийом пропозицій',
       'active.auction'       => 'Період аукціону',
