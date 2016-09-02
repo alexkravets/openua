@@ -1,12 +1,9 @@
 require 'net/http'
 
-require 'openssl'
-OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
-
 module OpenProcurement
   class Client
     def initialize(options={})
-      @schema  = options[:schema]  || 'https'
+      @schema  = options[:schema]  || 'http'
       @host    = options[:host]    || 'api.openprocurement.org'
       @version = options[:version] || '2.3'
     end
