@@ -29,15 +29,10 @@
       </td>
       <td class='col-2'>
         <strong>
-          <%= number_to_currency(t.value_amount, unit: '') %>
-          <%= currency_format(t.value_currency) %>
+          <%= amount(t.value_amount, t.value_currency) %>
         </strong>
         <br/>
-        <% if t.value_value_added_tax_included? %>
-          з ПДВ
-        <% else %>
-          без ПДВ
-        <% end %>
+        <%= tax_label(t.value_value_added_tax_included) %>
       </td>
       <td class='col-3'>
         <% if t.date %>

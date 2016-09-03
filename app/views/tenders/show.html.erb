@@ -4,3 +4,31 @@
     <li class='active'><em><%= @tender.tender_id %></em></li>
   </ul>
 </nav>
+
+<section class='row'>
+  <div class='col col-7'>
+    <h4><%= @tender.title %></h4>
+    <p><%= @tender.description %></p>
+    <p>
+      <%= link_to 'JSON', tender_json_path(@tender.open_procurement_id), class: 'button small', role: 'button', target: '_blank' %>
+      <%= link_to 'Prom.ua', tender_promua_path(@tender.open_procurement_id), class: 'button small', role: 'button', target: '_blank' %>
+    </p>
+  </div>
+  <aside class='col col-4 pull-right'>
+    <p>
+      <span class='label outline <%= tender_status_class(@tender.status) %>'>
+        <%= tender_status(@tender.status) %>
+      </span>
+    </p>
+    <p>
+      <strong>
+        <%= amount(@tender.value_amount, @tender.value_currency) %>
+        <%= tax_label(@tender.value_value_added_tax_included) %>
+      </strong>
+    </p>
+    <p class='small'>
+      <strong>Замовник:</strong>
+      <%= @tender.procuring_entity_name %>
+    </p>
+  </aside>
+</section>
