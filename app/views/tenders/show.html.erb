@@ -1,6 +1,6 @@
 <nav class='breadcrumb'>
   <ul>
-    <li><%= link_to "Закупівлі #{@total_tenders}", root_path %></li>
+    <li><%= link_to "Закупівлі (#{@total_tenders})", root_path %></li>
     <li class='active'><em><%= @tender.tender_id %></em></li>
   </ul>
 </nav>
@@ -10,10 +10,24 @@
     <h4><%= @tender.title %></h4>
     <p><%= @tender.description %></p>
     <p>
-      <%= link_to 'JSON', tender_json_path(@tender.open_procurement_id), class: 'button small', role: 'button', target: '_blank' %>
-      <%= link_to 'Prom.ua', tender_promua_path(@tender.open_procurement_id), class: 'button small', role: 'button', target: '_blank' %>
+      <%= link_to 'JSON', tender_bundle_path(@tender.open_procurement_id),
+                          class: 'button small',
+                          role: 'button',
+                          target: '_blank' %>
+
+      <%= link_to 'OP JSON', tender_json_path(@tender.open_procurement_id),
+                          class: 'button small',
+                          role: 'button',
+                          target: '_blank' %>
+
+      <%= link_to 'Prom.ua', tender_promua_path(@tender.open_procurement_id),
+                          class: 'button small',
+                          role: 'button',
+                          target: '_blank' %>
     </p>
+    <%= render partial: 'documents', locals: { documents: @tender.documents } %>
   </div>
+
   <aside class='col col-4 pull-right'>
     <p>
       <span class='label outline <%= tender_status_class(@tender.status) %>'>
@@ -21,14 +35,26 @@
       </span>
     </p>
     <p>
+      <small>Очікувана вартість:</small><br/>
       <strong>
         <%= amount(@tender.value_amount, @tender.value_currency) %>
         <%= tax_label(@tender.value_value_added_tax_included) %>
       </strong>
     </p>
-    <p class='small'>
-      <strong>Замовник:</strong>
-      <%= @tender.procuring_entity_name %>
+
+    <small>Замовник:</small>
+    <p class='company-address'>
+      <%= link_to @tender.procuring_entity_name, company_path(@tender.procuring_entity) %>
+      <span class='muted'>
+        Код ЄДРПОУ: <%= @tender.procuring_entity.company_id %>
+      </span>
+      <br/>
+      <%= address(@tender.procuring_entity) %>
+      <% if @tender.procuring_entity.uri%>
+        <br/>
+        <%= link_to @tender.procuring_entity.uri,
+                    @tender.procuring_entity.uri, target: '_blank' %>
+      <% end %>
     </p>
   </aside>
 </section>

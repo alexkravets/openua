@@ -1,0 +1,24 @@
+<nav class='breadcrumb'>
+  <ul>
+    <li><%= link_to "Компанії (#{@total_companies})", companies_path %></li>
+    <li class='active'>
+      <em><%= @company.scheme %> <%= @company.company_id %></em>
+    </li>
+  </ul>
+</nav>
+
+<p>
+  <%= @company.name %><br/>
+
+  <ul>
+  <% @company.tenders.each do |t| %>
+    <li><%= link_to t.title, tender_path(t.open_procurement_id) %></li>
+  <% end %>
+  </ul>
+
+  <ul>
+  <% @company.contacts.each do |c| %>
+    <li><%= c.name %></li>
+  <% end %>
+  </ul>
+</p>

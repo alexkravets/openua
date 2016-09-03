@@ -1,0 +1,39 @@
+<table class='table-documents'>
+  <thead>
+    <tr>
+      <th>Документи</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% documents_in_groups(documents).each do |id, versions| %>
+      <% document = versions.pop %>
+      <tr>
+        <td>
+          <span class='muted float-right'>
+            <%= tender_document_type(document.document_type) %>
+          </span>
+
+          <%= link_to document.title, document_preview_path(document), target: '_blank' %>
+          <br/>
+          <small class='muted'>
+            <%= dt(document.date_modified) %>
+          </small>
+        </td>
+      </tr>
+
+      <% versions.each do |version| %>
+      <tr class='table-documents-version'>
+        <td>
+          <del>
+            <%= link_to version.title, document_preview_path(version), target: '_blank' %>
+            <br/>
+            <small class='muted'>
+              <%= dt(version.date_modified) %>
+            </small>
+          </del>
+        </td>
+      </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>

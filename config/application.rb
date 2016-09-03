@@ -23,5 +23,7 @@ module TenderInfo
     # -- all .rb files in that directory are automatically loaded.
 
     require 'open_procurement'
+
+    config.time_zone = 'Europe/Kiev'
   end
 end

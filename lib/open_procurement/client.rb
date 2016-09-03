@@ -32,6 +32,17 @@ module OpenProcurement
       end
     end
 
+    def auction(url, format='')
+      uri = URI(url)
+
+      json = request(uri)
+      if format == 'json'
+        json
+      else
+        parse(json)
+      end
+    end
+
     private
 
     def path
@@ -47,7 +58,7 @@ module OpenProcurement
         res.body
       else
         ap 'Woops, request has failed.'
-        ''
+        nil
       end
     end
 

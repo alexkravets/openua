@@ -4,7 +4,7 @@
   </ul>
 </nav>
 
-<table>
+<table class='table-tenders'>
   <thead>
     <tr>
       <th class='col-7'>Предмет закупівлі</th>
@@ -21,7 +21,7 @@
         </span>
         <br/>
         <p>
-          <%= link_to t.title, tenders_show_path(t.open_procurement_id) %>
+          <%= link_to t.title, tender_path(t.open_procurement_id) %>
         </p>
         <p>
           <%= t.procuring_entity_name %>
@@ -39,7 +39,7 @@
           <p>
             Оголошено:<br/>
             <span class='muted'>
-              <%= l(t.date, format: '%-d %b %H:%M').downcase %>
+              <%= dt(t.date) %>
             </span>
           </p>
         <% end %>
@@ -48,7 +48,7 @@
           <p>
             Завершення періоду уточнень:<br/>
             <span class='muted'>
-              <%= l(t.enquiry_end_date, format: '%-d %b %H:%M').downcase %>
+              <%= dt(t.enquiry_end_date) %>
             </span>
           </p>
         <% end %>
@@ -57,9 +57,9 @@
           <p>
             Прийом пропозицій:<br/>
             <span class='muted'>
-              <%= l(t.tender_start_date, format: '%-d %b %H:%M').downcase %>
+              <%= dt(t.tender_start_date) %>
               –
-              <%= l(t.tender_end_date, format: '%-d %b %H:%M').downcase %>
+              <%= dt(t.tender_end_date) %>
             </span>
           </p>
         <% end %>
@@ -68,7 +68,7 @@
           <p>
             Завершено:<br/>
             <span class='muted'>
-              <%= l(t.date_modified, format: '%-d %b %H:%M').downcase %>
+              <%= dt(t.date_modified) %>
             </span>
           </p>
         <% end %>

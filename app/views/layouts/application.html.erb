@@ -13,9 +13,16 @@
 
 <body>
   <section class='main'>
-    <small class='muted float-right'>
-      Останнє оновлення: <%= @date_modified %>
-    </small>
+    <nav class='main-nav'>
+      <%= link_to 'Закупівлі', root_path %>
+      <%= link_to 'Компанії', companies_path %>
+    </nav>
+
+    <aside class='float-right'>
+      <small class='muted'>
+        Оновлення від: <%= @date_modified.in_time_zone %>
+      </small>
+    </aside>
 
     <%= yield %>
   </section>

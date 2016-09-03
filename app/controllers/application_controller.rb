@@ -5,7 +5,6 @@ class ApplicationController < ActionController::Base
   private
 
   def set_footprint
-    @total_tenders = Tender.all.size
-    @date_modified = Tender.all.first.try(:date_modified)
+    @date_modified = Tender.by_date_modified.first.try(:date_modified)
   end
 end

@@ -1,0 +1,18 @@
+<nav class='breadcrumb'>
+  <ul>
+    <li class='active'><em>Компанії (<%= @total_companies %>)</em></li>
+  </ul>
+</nav>
+
+<table class='companies-index'>
+  <% @companies.each do |c| %>
+  <tr>
+    <td>
+      <%= link_to c.name, company_path(c) %><br/>
+      <small class='muted'><%= c.scheme %> <%= c.company_id %></small>
+    </td>
+  </tr>
+  <% end %>
+</table>
+
+<%= paginate @companies %>

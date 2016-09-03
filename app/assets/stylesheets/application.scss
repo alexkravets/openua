@@ -12,6 +12,14 @@ body {
   padding: 0 1em;
 }
 
+.main-nav {
+  margin: 0 0 2em;
+
+  a {
+    margin-right: 1em;
+  }
+}
+
 a {
   text-decoration: none;
 }
@@ -19,38 +27,61 @@ a {
 table {
   font-size: 0.85em;
   line-height: 1.4em;
-}
 
-table a {
-  display: block;
-}
-
-table .label.outline {
-  padding: 3px 7px;
-  position: relative;
-  top: -8px;
-}
-
-table tbody .col-6 {
-  padding-top: 1.5em;
-}
-
-table tbody .col-2 {
-  padding-top: 35px;
-}
-
-table tbody .col-3 {
-  padding-top: 20px;
-
-  p {
-    margin-bottom: 6px;
+  tr:last-child td {
+    border-bottom: none;
   }
-}
-
-table tr:last-child td {
-  border-bottom: none;
 }
 
 .pagination .gap em {
   background-color: transparent;
+}
+
+.table-tenders {
+  a {
+    display: block;
+  }
+
+  .label.outline {
+    padding: 3px 7px;
+    position: relative;
+    top: -8px;
+  }
+
+  tbody .col-6 {
+    padding-top: 1.5em;
+  }
+
+  tbody .col-2 {
+    padding-top: 35px;
+  }
+
+  tbody .col-3 {
+    p {
+      margin-bottom: 6px;
+    }
+  }
+}
+
+.table-documents {
+  th, td {
+    padding-top: 10px;
+    padding-bottom: 9px;
+  }
+}
+
+.table-documents-version {
+  td {
+    padding-left: 1.5em;
+  }
+}
+
+.company-address {
+  font-size: 14px;
+  line-height: 1.6em;
+
+  a {
+    display: block;
+    font-weight: 500;
+  }
 }
