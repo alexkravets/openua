@@ -1,11 +1,15 @@
-//= require prism
-//= require_self
-
 @import "kube";
+
+body {
+  background-image: linear-gradient($color-default, $color-default);
+  background-repeat: repeat-x;
+  background-size: 3px 3px;
+}
 
 .main {
   margin: 2em auto 3em;
   max-width: 1128px;
+  padding: 0 1em;
 }
 
 a {

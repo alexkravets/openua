@@ -9,10 +9,4 @@ class TendersController < ApplicationController
     @bundle = OpenProcurement::TenderBundle.find_by(open_procurement_id: id)
     @json = JSON.pretty_generate(@bundle.data)
   end
-
-  private
-
-  def client
-    @client ||= OpenProcurement::Client.new
-  end
 end

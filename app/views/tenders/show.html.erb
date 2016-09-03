@@ -1,12 +1,6 @@
 <nav class='breadcrumb'>
   <ul>
-    <li><%= link_to 'Закупівлі', root_path %></li>
+    <li><%= link_to "Закупівлі #{@total_tenders}", root_path %></li>
     <li class='active'><em><%= @tender.tender_id %></em></li>
   </ul>
 </nav>
-
-<pre>
-  <code class='language-json'>
-<%= @json.html_safe %>
-  </code>
-</pre>

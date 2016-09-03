@@ -8,11 +8,12 @@ module ApplicationHelper
   end
 
   def tender_status_class(status)
+    status = status.split('.').first
     {
-      'active.tendering' => 'primary',
-      'unsuccessful'     => 'error', # 'warning',
-      'complete'         => 'success',
-      'cancelled'        => 'error',
+      'active'   => 'success',
+      'complete' => 'primary'
+      #'unsuccessful' => 'error', # 'warning',
+      #'cancelled'    => 'error',
     }[status] || ''
   end
 end
