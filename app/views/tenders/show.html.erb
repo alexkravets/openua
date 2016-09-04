@@ -24,6 +24,11 @@
                           class: 'button small',
                           role: 'button',
                           target: '_blank' %>
+
+      <%= link_to 'Prozorro', tender_prozorro_path(@tender.tender_id),
+                          class: 'button small',
+                          role: 'button',
+                          target: '_blank' %>
     </p>
     <%= render partial: 'documents', locals: { documents: @tender.documents } %>
   </div>

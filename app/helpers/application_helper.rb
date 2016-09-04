@@ -34,6 +34,10 @@ module ApplicationHelper
     "http://zakupki.prom.ua/dz/list?search=#{id}"
   end
 
+  def tender_prozorro_path(id)
+    "https://prozorro.gov.ua/tender/#{id}/"
+  end
+
   def tender_document_type(type)
     OpenProcurement::Constants::TENDER_DOCUMENT_TYPE_OPTIONS[type] || '—'
   end
