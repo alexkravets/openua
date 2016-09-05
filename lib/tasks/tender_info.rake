@@ -1,4 +1,4 @@
-namespace :tender_info do
+namespace :openua do
   desc 'Sync models with OP data'
   task :sync => :environment do
     loop do
@@ -15,6 +15,6 @@ namespace :tender_info do
   desc 'Force sync models with OP data'
   task :force_sync => :environment do
     OpenProcurement::TenderBundle.update_all(model_in_sync: false)
-    Rake::Task["tender_info:sync"].invoke
+    Rake::Task["openua:sync"].invoke
   end
 end
