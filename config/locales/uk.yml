@@ -7,3 +7,6 @@ uk:
       previous: "&lsaquo; Попередня"
       next: "Наступна &rsaquo;"
       truncate: "&hellip;"
+      page:
+        current: ''
+        goto: ''

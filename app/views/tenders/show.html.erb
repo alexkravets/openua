@@ -1,65 +1,114 @@
-<nav class='breadcrumb'>
-  <ul>
-    <li><%= link_to "Закупівлі (#{@total_tenders})", root_path %></li>
-    <li class='active'><em><%= @tender.tender_id %></em></li>
-  </ul>
+<nav class='ui breadcrumb'>
+  <%= link_to 'Закупівлі', root_path, class: 'section' %>
+  <div class='divider'> / </div>
+  <div class='section active'>
+    <%= @tender.tender_id %>
+  </div>
+  <button class='ui icon button basic mini'
+          data-clipboard-text='<%= @tender.tender_id %>'>
+    <i class='icon copy'></i>
+  </button>
+  <small class='float-right muted'>
+    Оновлено:
+    <%= @date_modified.in_time_zone %>
+  </small>
 </nav>
 
-<section class='row'>
-  <div class='col col-7'>
-    <h4><%= @tender.title %></h4>
+<section class='tender ui two column relaxed grid'>
+  <div class='ten wide column'>
+    <h2><%= @tender.title %></h2>
     <p><%= @tender.description %></p>
-    <p>
-      <%= link_to 'JSON', tender_bundle_path(@tender.open_procurement_id),
-                          class: 'button small',
-                          role: 'button',
-                          target: '_blank' %>
 
-      <%= link_to 'OP JSON', tender_json_path(@tender.open_procurement_id),
-                          class: 'button small',
-                          role: 'button',
-                          target: '_blank' %>
-
-      <%= link_to 'Prom.ua', tender_promua_path(@tender.open_procurement_id),
-                          class: 'button small',
-                          role: 'button',
-                          target: '_blank' %>
-
-      <%= link_to 'Prozorro', tender_prozorro_path(@tender.tender_id),
-                          class: 'button small',
-                          role: 'button',
-                          target: '_blank' %>
-    </p>
     <%= render partial: 'documents', locals: { documents: @tender.documents } %>
   </div>
 
-  <aside class='col col-4 pull-right'>
-    <p>
-      <span class='label outline <%= tender_status_class(@tender.status) %>'>
-        <%= tender_status(@tender.status) %>
-      </span>
-    </p>
-    <p>
-      <small>Очікувана вартість:</small><br/>
-      <strong>
-        <%= amount(@tender.value_amount, @tender.value_currency) %>
-        <%= tax_label(@tender.value_value_added_tax_included) %>
-      </strong>
-    </p>
+  <aside class='right six wide column'>
+    <div class='ui fluid card'>
+      <div class='content'>
+        <div class='ui ribbon label <%= tender_status_class(@tender.status) %>'>
+          <%= tender_status(@tender.status) %>
+        </div>
 
-    <small>Замовник:</small>
-    <p class='company-address'>
-      <%= link_to @tender.procuring_entity_name, company_path(@tender.procuring_entity) %>
-      <span class='muted'>
-        Код ЄДРПОУ: <%= @tender.procuring_entity.company_id %>
-      </span>
-      <br/>
-      <%= address(@tender.procuring_entity) %>
-      <% if @tender.procuring_entity.uri%>
+        <div class='ui small statistic'>
+          <div class='value'>
+            <%= amount(@tender.value_amount, @tender.value_currency) %>
+          </div>
+          <div class='label'>
+            <%= tax_label(@tender.value_value_added_tax_included) %>
+          </div>
+        </div>
+
+        <div class='ui three basic buttons'>
+          <%= link_to 'JSON', tender_bundle_path(@tender.open_procurement_id),
+                              class: 'ui button small',
+                              role: 'button',
+                              target: '_blank' %>
+
+          <%= link_to 'Prom.ua', tender_promua_path(@tender.open_procurement_id),
+                              class: 'ui button small',
+                              role: 'button',
+                              target: '_blank' %>
+
+          <%= link_to 'Prozorro', tender_prozorro_path(@tender.tender_id),
+                              class: 'ui button small',
+                              role: 'button',
+                              target: '_blank' %>
+        </div>
+      </div>
+    </div>
+
+    <div class='ui fluid card'>
+      <div class='content'>
+        <div class='header'>
+          <%= @tender.procuring_entity_name %>
+        </div>
+        <div class='meta'>
+          Код ЄДРПОУ: <%= @company.company_id %>
+        </div>
+        <div class='description'>
+          <%= address(@company) %>
+          <% if @company.uri %>
+            <br/>
+            <i class='linkify icon'></i>
+            <%= link_to lf(@company.uri), target: '_blank' do %>
+              <%= @company.uri %>
+            <% end %>
+          <% end %>
+        </div>
         <br/>
-        <%= link_to @tender.procuring_entity.uri,
-                    @tender.procuring_entity.uri, target: '_blank' %>
-      <% end %>
-    </p>
+        <%= link_to company_path(@company),
+                    class: 'ui fluid basic primary button' do %>
+          Детальніше про компанію <i class='right chevron icon'></i>
+        <% end %>
+      </div>
+
+      <div class='content'>
+        <img class="right floated mini ui image" src="http://semantic-ui.com/images/avatar/large/elliot.jpg">
+
+        <div class='header'><%= @contact.name %></div>
+        <div class='meta'>Контактна особа</div>
+        <div class='description'>
+          <i class='phone icon'></i>
+          <%= link_to number_to_phone(@contact.telephone, area_code: true),
+                      "tel:#{@contact.telephone}" %>
+          <br/>
+
+          <% if @contact.fax_number %>
+            <i class='fax icon'></i>
+            <%= link_to number_to_phone(@contact.fax_number, area_code: true),
+                        "tel:#{@contact.fax_number}" %>
+            <br/>
+          <% end %>
+
+          <i class='mail icon'></i>
+          <%= link_to @contact.email, "mailto:#{@contact.email}" %><br/>
+
+          <% if @contact.url %>
+            <i class='linkify icon'></i>
+            <%= link_to lf(@contact.url), @contact.url, target: '_blank' %><br/>
+          <% end %>
+        </div>
+      </div>
+    </div>
   </aside>
 </section>

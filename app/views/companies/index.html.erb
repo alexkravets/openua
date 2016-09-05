@@ -1,7 +1,10 @@
-<nav class='breadcrumb'>
-  <ul>
-    <li class='active'><em>Компанії (<%= @total_companies %>)</em></li>
-  </ul>
+<nav class='ui breadcrumb'>
+  <div class='active section'>Компанії</div>
+
+  <small class='float-right muted'>
+    Оновлено:
+    <%= @date_modified.in_time_zone %>
+  </small>
 </nav>
 
 <table class='companies-index'>

@@ -1,87 +1,60 @@
-@import "kube";
+//= require semantic
+//= require_self
 
-body {
-  background-image: linear-gradient($color-default, $color-default);
-  background-repeat: repeat-x;
-  background-size: 3px 3px;
+.ui.container {
+  margin-top: 1em;
+  margin-bottom: 3em;
 }
 
-.main {
-  margin: 2em auto 3em;
-  max-width: 1128px;
-  padding: 0 1em;
+.ui.menu {
+  margin: 0 -1.15em 1em;
 }
 
-.main-nav {
-  margin: 0 0 2em;
+.ui.breadcrumb {
+  display: block;
+  line-height: 2;
+  margin-bottom: 2em;
 
-  a {
-    margin-right: 1em;
-  }
-}
-
-a {
-  text-decoration: none;
-}
-
-table {
-  font-size: 0.85em;
-  line-height: 1.4em;
-
-  tr:last-child td {
-    border-bottom: none;
-  }
-}
-
-.pagination .gap em {
-  background-color: transparent;
-}
-
-.table-tenders {
-  a {
-    display: block;
-  }
-
-  .label.outline {
-    padding: 3px 7px;
+  .icon.button {
+    font-size: 0.9em;
+    margin-left: 0.25em;
+    padding: 0.5em 0.5em 0.4em;
     position: relative;
-    top: -8px;
-  }
+    top: -1px;
 
-  tbody .col-6 {
-    padding-top: 1.5em;
-  }
-
-  tbody .col-2 {
-    padding-top: 35px;
-  }
-
-  tbody .col-3 {
-    p {
-      margin-bottom: 6px;
+    > .icon {
+      color: #aaa;
     }
   }
 }
 
-.table-documents {
-  th, td {
-    padding-top: 10px;
-    padding-bottom: 9px;
+.ui.table.very.padded td > .ui.ribbon.label {
+  left: -2.9em;
+}
+
+.ui.statistic {
+  display: block;
+
+  > .value,
+  > .label {
+    text-transform: none;
   }
 }
 
-.table-documents-version {
-  td {
-    padding-left: 1.5em;
-  }
+// Custom classes
+
+.float-right {
+  float: right;
 }
 
-.company-address {
-  font-size: 14px;
-  line-height: 1.6em;
+.muted {
+  color: rgba(0,0,0,0.5) !important;
+}
 
-  a {
-    display: block;
-    font-weight: 500;
-  }
+.ribbon + h3 {
+  margin: 0.75em 0 0.25em;
+}
+
+.tender .ui.statistic {
+  margin: 1.5em 0;
 }

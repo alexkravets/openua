@@ -1,10 +1,21 @@
-<nav class='breadcrumb'>
-  <ul>
-    <li><%= link_to "Компанії (#{@total_companies})", companies_path %></li>
-    <li class='active'>
-      <em><%= @company.scheme %> <%= @company.company_id %></em>
-    </li>
-  </ul>
+<nav class='ui breadcrumb'>
+  <%= link_to 'Компанії', companies_path, class: 'section' %>
+
+  <div class='divider'> / </div>
+
+  <div class='section active'>
+    <%= @company.scheme %> <%= @company.company_id %>
+  </div>
+
+  <button class='ui icon button basic mini'
+          data-clipboard-text='<%= @company.company_id %>'>
+    <i class='icon copy'></i>
+  </button>
+
+  <small class='float-right muted'>
+    Оновлено:
+    <%= @date_modified.in_time_zone %>
+  </small>
 </nav>
 
 <p>

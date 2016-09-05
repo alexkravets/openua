@@ -1,6 +1,6 @@
 module ApplicationHelper
   def currency_format(currency)
-    { 'UAH' => 'грн.' }[currency]
+    { 'UAH' => '&#8372;'.html_safe }[currency]
   end
 
   def tender_status(status)
@@ -10,14 +10,14 @@ module ApplicationHelper
   def tender_status_class(status)
     status = status.split('.').first
     {
-      'active'   => 'success',
-      'complete' => 'primary'
+      'active'   => 'green',
+      'complete' => 'blue'
       #'unsuccessful' => 'error', # 'warning',
       #'cancelled'    => 'error',
     }[status] || ''
   end
 
-  def amount(value, currency)
+  def amount(value, currency='')
     currency = currency_format(currency)
     number_to_currency(value, unit: currency)
   end
@@ -65,6 +65,11 @@ module ApplicationHelper
     region   = company.region
     locality = company.locality
     street   = company.street_address
-    [index, contry, region, locality, street].join(', ')
+
+    "#{street} / #{locality}<br/>#{region} / #{contry} / #{index}".html_safe
+  end
+
+  def lf(url)
+    url.remove('http://').remove('https://')
   end
 end
