@@ -58,6 +58,7 @@ module OpenProcurement
         res.body
       else
         ap 'Woops, request has failed.'
+        ap res
         nil
       end
     end
