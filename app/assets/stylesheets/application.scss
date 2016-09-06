@@ -2,8 +2,8 @@
 //= require_self
 
 .ui.container {
-  margin-top: 1em;
-  margin-bottom: 3em;
+  margin-top: 2.5em;
+  margin-bottom: 5em;
 }
 
 .ui.menu {
@@ -67,4 +67,10 @@
   font-size: .92857143em;
   color: rgba(0,0,0,.4);
   vertical-align: baseline;
+}
+
+body {
+  background-image: linear-gradient(#4183C4, #4183C4);
+  background-repeat: repeat-x;
+  background-size: 3px 3px;
 }
