@@ -1,7 +1,7 @@
 module OpenProcurement
   class Sync
     def start
-      offset = (Time.zone.now - 5.minutes).to_s
+      offset = (Time.zone.now - 5.minutes).iso8601
 
       lastest_bundle = OpenProcurement::TenderBundle.first
       if lastest_bundle

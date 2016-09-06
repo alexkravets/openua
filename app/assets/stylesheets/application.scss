@@ -58,3 +58,13 @@
 .tender .ui.statistic {
   margin: 1.5em 0;
 }
+
+// Reference class: .ui.breadcrumb .divider
+.documents .divider {
+  display: inline-block;
+  opacity: .7;
+  margin: 0 .21428571rem;
+  font-size: .92857143em;
+  color: rgba(0,0,0,.4);
+  vertical-align: baseline;
+}
