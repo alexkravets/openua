@@ -1,12 +1,8 @@
 <nav class='ui breadcrumb'>
   <%= link_to 'Закупівлі', root_path, class: 'active section' %>
-  <small class='float-right muted'>
-    Оновлено:
-    <%= @date_modified.in_time_zone %>
-  </small>
 </nav>
 
-<table class='very padded striped ui table '>
+<table class='very padded striped ui table tenders'>
   <thead>
     <tr>
       <th class='seven wide'>Предмет закупівлі</th>

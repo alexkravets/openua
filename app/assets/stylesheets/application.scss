@@ -2,7 +2,6 @@
 //= require_self
 
 .ui.container {
-  margin-top: 2.5em;
   margin-bottom: 5em;
 }
 
@@ -43,6 +42,11 @@
 
 // Custom classes
 
+aside.ui.segment {
+  padding-right: 0;
+  margin: 0 -0.5em 0;
+}
+
 .float-right {
   float: right;
 }
@@ -59,6 +63,12 @@
   margin: 1.5em 0;
 }
 
+.tenders.ui.table {
+  td:nth-child(3) p {
+    margin-bottom: 0.25em;
+  }
+}
+
 // Reference class: .ui.breadcrumb .divider
 .documents .divider {
   display: inline-block;
@@ -73,4 +83,50 @@ body {
   background-image: linear-gradient(#4183C4, #4183C4);
   background-repeat: repeat-x;
   background-size: 3px 3px;
+}
+
+@media only screen and (max-width: 991px) and (min-width: 768px) {
+  .tenders.ui.table {
+    td:nth-child(3) > * {
+      font-size: 0.8em;
+    }
+    .ui.mini.statistic > .value {
+      font-size: 1.1rem!important;
+    }
+    .ui.mini.statistic > .label {
+      font-size: 0.9em;
+    }
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .tenders.ui.table {
+    &:not(.unstackable) thead {
+      display: none;
+    }
+
+    td:nth-child(2) {
+      float: right;
+      position: relative;
+      top: -3.2em;
+    }
+
+    td:nth-child(3) > * {
+      display: none;
+    }
+  }
+
+  .ui.table.very.padded td > .ui.ribbon.label {
+    left: -2.05em;
+  }
+
+  .ui.menu {
+    border-radius: 0;
+    border-left: 0;
+    border-right: 0;
+  }
+
+  .ui.pagination.menu .item.page:not(.active) {
+    display: none;
+  }
 }
