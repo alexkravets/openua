@@ -1,8 +1,8 @@
 GIT
   remote: git://github.com/alexkravets/mongoid_search.git
-  revision: 05e9d7c9d46e161041879a54ad5066c9bebb39e2
+  revision: 252920176d427d9b50264c6241c3ee74fdfee774
   specs:
-    mongoid_search (0.3.2)
+    mongoid_search (0.3.3)
       fast-stemmer (~> 1.0.0)
       mongoid (>= 3.0.0)
 
