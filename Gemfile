@@ -4,6 +4,8 @@ source 'https://rubygems.org'
 gem 'awesome_print'
 # Ruby ODM framework for MongoDB
 gem 'mongoid', github: 'mongodb/mongoid'
+# Simple full text search
+gem 'mongoid_search', github: 'alexkravets/mongoid_search' # path: '../mongoid_search'
 # OpenAPI-compliant CRUD interface for Rails models with documentation.
 gem 'openapi-rails'
 # Repository for collecting Locale data for Ruby on Rails I18n

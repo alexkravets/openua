@@ -1,15 +1,23 @@
-<nav class='ui breadcrumb'>
-  <%= link_to 'Закупівлі', root_path, class: 'active section' %>
-</nav>
+<form class='ui large fluid action left icon input form-search'
+      method='get'>
+  <i class='search icon'></i>
+  <input type='text'
+         name='search'
+         placeholder='Назва або номер закупівлі, назва або код ЄДРПОУ компанії'
+         value='<%= @search %>'>
+  <div type='submit' class='ui button'>Пошук</div>
+</form>
 
-<table class='very padded striped ui table tenders'>
-  <thead>
-    <tr>
-      <th class='seven wide'>Предмет закупівлі</th>
-      <th class='two wide center aligned'>Вартість</th>
-      <th class='three wide right aligned'>Важливі дати</th>
-    </tr>
-  </thead>
+<table class='ui very padded striped table tenders'>
+  <% if @tenders.total_pages > 0 %>
+    <thead>
+      <tr>
+        <th class='seven wide'>Предмет закупівлі</th>
+        <th class='two wide center aligned'>Вартість</th>
+        <th class='three wide right aligned'>Важливі дати</th>
+      </tr>
+    </thead>
+  <% end %>
 
   <tbody>
     <% @tenders.each do |t| %>
@@ -21,10 +29,10 @@
           </div>
         <% end %>
 
-        <h3><%= link_to t.title, tender_path(t.open_procurement_id) %></h3>
+        <h3><%= link_to t.title, tender_path(t.tender_id) %></h3>
         <p><%= t.procuring_entity_name %></p>
 
-        <%= link_to tender_path(t.open_procurement_id),
+        <%= link_to tender_path(t.tender_id),
                     class: 'ui basic button' do %>
           Детальніше <i class='right chevron icon'></i>
         <% end %>
@@ -84,13 +92,21 @@
       </td>
     </tr>
     <% end %>
+
+    <% if @tenders.total_pages == 0 %>
+      <tr class='center aligned'>
+        <td>Нічого не знайдено</td>
+      </tr>
+    <% end %>
   </tbody>
 
-  <tfoot>
-    <tr>
-      <th colspan='3'>
-        <%= paginate @tenders %>
-      </th>
-    </tr>
-  </tfoot>
+  <% if @tenders.total_pages > 1 %>
+    <tfoot>
+      <tr>
+        <th colspan='3'>
+          <%= paginate @tenders %>
+        </th>
+      </tr>
+    </tfoot>
+  <% end %>
 </table>

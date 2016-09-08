@@ -20,10 +20,15 @@
       <div class='header item'>
         OpenUA Online
       </div>
-      <%= link_to 'Закупівлі', root_path, class: 'item' %>
-      <%= link_to 'Компанії', companies_path, class: 'item' %>
-    </nav>
 
+      <%= link_to 'Закупівлі',
+                  root_path,
+                  class: "item#{ ' active' if @menu_active == 'tenders' }" %>
+
+      <%= link_to 'Компанії',
+                  companies_path,
+                  class: "item#{ ' active' if @menu_active == 'companies' }" %>
+    </nav>
     <%= yield %>
   </section>
 </body>

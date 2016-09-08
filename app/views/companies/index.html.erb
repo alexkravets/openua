@@ -1,16 +1,37 @@
-<nav class='ui breadcrumb'>
-  <div class='active section'>Компанії</div>
-</nav>
+<form class='ui large fluid action left icon input form-search' method='get'>
+  <i class='search icon'></i>
+  <input type='text'
+         name='search'
+         placeholder='Назва або код ЄДРПОУ компанії'
+         value='<%= @search %>'>
+  <div type='submit' class='ui button'>Пошук</div>
+</form>
 
-<table class='companies-index'>
-  <% @companies.each do |c| %>
-  <tr>
-    <td>
-      <%= link_to c.name, company_path(c) %><br/>
-      <small class='muted'><%= c.scheme %> <%= c.company_id %></small>
-    </td>
-  </tr>
+<table class='ui very padded striped table companies'>
+  <tbody>
+    <% @companies.each do |c| %>
+    <tr>
+      <td>
+        <%= link_to c.name, company_path(c.company_id) %><br/>
+        <small class='muted'><%= c.scheme %> <%= c.company_id %></small>
+      </td>
+    </tr>
+    <% end %>
+
+    <% if @companies.total_pages == 0 %>
+      <tr class='center aligned'>
+        <td>Нічого не знайдено</td>
+      </tr>
+    <% end %>
+  </tbody>
+
+  <% if @companies.total_pages > 1 %>
+    <tfoot>
+      <tr>
+        <th colspan='3'>
+          <%= paginate @companies %>
+        </td>
+      </tr>
+    </tfoot>
   <% end %>
 </table>
-
-<%= paginate @companies %>

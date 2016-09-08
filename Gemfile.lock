@@ -1,4 +1,12 @@
 GIT
+  remote: git://github.com/alexkravets/mongoid_search.git
+  revision: 05e9d7c9d46e161041879a54ad5066c9bebb39e2
+  specs:
+    mongoid_search (0.3.2)
+      fast-stemmer (~> 1.0.0)
+      mongoid (>= 3.0.0)
+
+GIT
   remote: git://github.com/mongodb/mongoid.git
   revision: 71c29a80599087008ecfbd057d3d049c2153c7ce
   specs:
@@ -67,6 +75,7 @@ GEM
       railties (>= 4.0, < 5.1)
     erubis (2.7.0)
     execjs (2.7.0)
+    fast-stemmer (1.0.2)
     ffi (1.9.14)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
@@ -208,6 +217,7 @@ DEPENDENCIES
   jquery-rails
   listen (~> 3.0.5)
   mongoid!
+  mongoid_search!
   openapi-rails
   puma (~> 3.0)
   rails (~> 5.0.0, >= 5.0.0.1)

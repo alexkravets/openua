@@ -1,5 +1,6 @@
 class Tender
   include Mongoid::Document
+  include Mongoid::Search
 
   ## Attributes
   field :open_procurement_id
@@ -34,6 +35,9 @@ class Tender
 
   ## Scopes
   scope :by_date_modified, -> { desc(:date_modified) }
+
+  ## Search
+  search_in :title, :tender_id, :open_procurement_id, :procuring_entity_name
 
   ## Indexes
   index(open_procurement_id: 1)

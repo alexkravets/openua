@@ -1,5 +1,6 @@
 class Company
   include Mongoid::Document
+  include Mongoid::Search
 
   ## Attributes
   field :name
@@ -19,4 +20,7 @@ class Company
   ## Relations
   has_many :contacts
   has_many :tenders, inverse_of: :procuring_entity
+
+  ## Search
+  search_in :name, :company_id
 end
