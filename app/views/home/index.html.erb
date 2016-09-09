@@ -1,0 +1,15 @@
+<section class='ui very padded segment'>
+  <div class='ui left floated statistic'>
+    <div class='value'><%= @total_tenders %></div>
+    <div class='label'>Закупівель</div>
+  </div>
+  <%= render partial: 'tenders/search' %>
+</section>
+
+<div class='ui very padded segment'>
+  <div class='ui left floated statistic'>
+    <div class='value'><%= @total_companies %></div>
+    <div class='label'>Компаній</div>
+  </div>
+  <%= render partial: 'companies/search' %>
+</section>

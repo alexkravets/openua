@@ -1,0 +1,10 @@
+<form class='ui large fluid action left icon input form-search'
+      method='get'
+      action='<%= tenders_path %>'>
+  <i class='search icon'></i>
+  <input type='text'
+         name='search'
+         placeholder='Назва або код ЄДРПОУ компанії'
+         value='<%= @search %>'>
+  <div type='submit' class='ui button'>Пошук</div>
+</form>

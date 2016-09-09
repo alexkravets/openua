@@ -1,0 +1,46 @@
+.tenders.ui.table {
+  td:nth-child(3) p {
+    margin-bottom: 0.25em;
+  }
+
+  .ui.statistic {
+    display: block;
+
+    > .value,
+    > .label {
+      text-transform: none;
+    }
+  }
+}
+
+@media only screen and (max-width: 991px) and (min-width: 768px) {
+  .tenders.ui.table {
+    td:nth-child(3) > * {
+      font-size: 0.8em;
+    }
+    .ui.mini.statistic > .value {
+      font-size: 1.1rem!important;
+    }
+    .ui.mini.statistic > .label {
+      font-size: 0.9em;
+    }
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .tenders.ui.table {
+    &:not(.unstackable) thead {
+      display: none;
+    }
+
+    td:nth-child(2) {
+      float: right;
+      position: relative;
+      top: -3.2em;
+    }
+
+    td:nth-child(3) > * {
+      display: none;
+    }
+  }
+}

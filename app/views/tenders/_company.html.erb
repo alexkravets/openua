@@ -1,0 +1,28 @@
+<div class='content'>
+  <%= image_tag gravatar_image_url(@contact.email),
+                class: 'ui right floated mini image' %>
+
+  <div class='header'><%= @contact.name %></div>
+  <div class='meta'>Контактна особа</div>
+  <div class='description'>
+    <i class='phone icon'></i>
+    <%= link_to number_to_phone(@contact.telephone, area_code: true),
+                "tel:#{@contact.telephone}" %>
+    <br/>
+
+    <% if @contact.fax_number %>
+      <i class='fax icon'></i>
+      <%= link_to number_to_phone(@contact.fax_number, area_code: true),
+                  "tel:#{@contact.fax_number}" %>
+      <br/>
+    <% end %>
+
+    <i class='mail icon'></i>
+    <%= link_to @contact.email, "mailto:#{@contact.email}" %><br/>
+
+    <% if @contact.url %>
+      <i class='linkify icon'></i>
+      <%= link_to lf(@contact.url), @contact.url, target: '_blank' %><br/>
+    <% end %>
+  </div>
+</div>

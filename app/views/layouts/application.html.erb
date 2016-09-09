@@ -11,23 +11,23 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 </head>
 
-<body>
+<body class='section-<%= @section %>'>
   <section class='ui container'>
     <aside class='ui right aligned basic segment'>
       <small class='muted'>Оновлено: <%= @date_modified.in_time_zone %></small>
     </aside>
     <nav class='ui menu'>
-      <div class='header item'>
-        OpenUA Online
-      </div>
+      <%= link_to 'Головна',
+                  root_path,
+                  class: "item#{ ' active' if @section == 'home' }" %>
 
       <%= link_to 'Закупівлі',
-                  root_path,
-                  class: "item#{ ' active' if @menu_active == 'tenders' }" %>
+                  tenders_path,
+                  class: "item#{ ' active' if @section == 'tenders' }" %>
 
       <%= link_to 'Компанії',
                   companies_path,
-                  class: "item#{ ' active' if @menu_active == 'companies' }" %>
+                  class: "item#{ ' active' if @section == 'companies' }" %>
     </nav>
     <%= yield %>
   </section>

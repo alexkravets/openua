@@ -1,11 +1,4 @@
-<form class='ui large fluid action left icon input form-search' method='get'>
-  <i class='search icon'></i>
-  <input type='text'
-         name='search'
-         placeholder='Назва або код ЄДРПОУ компанії'
-         value='<%= @search %>'>
-  <div type='submit' class='ui button'>Пошук</div>
-</form>
+<%= render partial: 'search' %>
 
 <table class='ui very padded striped table companies'>
   <tbody>

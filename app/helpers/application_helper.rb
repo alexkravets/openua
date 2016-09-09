@@ -72,4 +72,9 @@ module ApplicationHelper
   def lf(url)
     url.remove('http://').remove('https://')
   end
+
+  def gravatar_image_url(email)
+    hex = Digest::MD5.hexdigest(email)
+    "https://www.gravatar.com/avatar/#{hex}?s=80&d=mm&r=g"
+  end
 end
