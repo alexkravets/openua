@@ -1,0 +1,10 @@
+.section-home {
+  .ui.segment.tenders {
+    padding: 0;
+    margin: 2.5em 0;
+  }
+
+  .ui.celled.grid > .twelve.wide.column:not(.row) {
+    padding: 3em;
+  }
+}

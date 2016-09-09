@@ -1,5 +1,7 @@
 //= require semantic
 //= require application/tenders
+//= require application/tender
+//= require application/index
 //= require_self
 
 .ui.container {
@@ -54,10 +56,6 @@ aside.ui.segment {
 
 .ribbon + h3 {
   margin: 0.75em 0 0.25em;
-}
-
-.tender .ui.statistic {
-  margin: 1.5em 0;
 }
 
 // Reference class: .ui.breadcrumb .divider

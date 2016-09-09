@@ -1,15 +1,34 @@
-<section class='ui very padded segment'>
-  <div class='ui left floated statistic'>
-    <div class='value'><%= number_with_delimiter(@total_tenders) %></div>
-    <div class='label'>Закупівель</div>
+<section class='ui internally celled stackable grid segment tenders'>
+  <div class='four wide center aligned column'>
+    <div class='ui statistic'>
+      <div class='value'><%= number_with_delimiter(@total_tenders) %></div>
+      <div class='label'>Закупівель</div>
+    </div>
   </div>
-  <%= render partial: 'tenders/search' %>
+  <div class='twelve wide column'>
+    <form class='ui huge fluid left icon transparent input'
+          method='get'
+          action='<%= tenders_path %>'>
+      <i class='search icon'></i>
+      <input type='text'
+             name='search'
+             placeholder='Назва або номер закупівлі, назва або код ЄДРПОУ компанії'
+             value='<%= @search %>'>
+    </form>
+  </div>
 </section>
 
-<div class='ui very padded segment'>
-  <div class='ui left floated statistic'>
-    <div class='value'><%= number_with_delimiter(@total_companies) %></div>
-    <div class='label'>Компаній</div>
-  </div>
-  <%= render partial: 'companies/search' %>
-</section>
+<h3 class='center aligned'>Створені сьогодні:</h3>
+
+<div class='ui four column grid'>
+  <% @tenders_create_today.each do |t| %>
+    <div class='column'>
+      <%= link_to truncate(t.title, length: 60), tender_path(t.tender_id) %>
+      <br/>
+      <%= t.procuring_entity_name %>
+      <br/>
+      <small class='muted'><%= l(t.date.in_time_zone, format: '%H:%M') %></small>
+      <small>/ <%= amount(t.value_amount, t.value_currency) %></small>
+    </div>
+  <% end %>
+</ul>

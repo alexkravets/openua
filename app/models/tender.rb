@@ -35,11 +35,13 @@ class Tender
 
   ## Scopes
   scope :by_date_modified, -> { desc(:date_modified) }
+  scope :created_today, -> { where(:date.gte => Time.zone.today.beginning_of_day).desc(:date) }
 
   ## Search
   search_in :title, :tender_id, :open_procurement_id, :procuring_entity_name
 
   ## Indexes
   index(open_procurement_id: 1)
-  index(by_date_modified: -1)
+  index(date_modified: -1)
+  index(date: -1)
 end
