@@ -6,4 +6,4 @@ if [ "$*" == "" ]; then
 fi
 
 HOST="$1"
-ssh root@$HOST "bash -s" < ./bin/do/pull.sh
+ssh root@$HOST "bash -s" < ./bin/pull
