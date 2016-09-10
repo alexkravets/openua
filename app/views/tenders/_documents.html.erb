@@ -13,7 +13,11 @@
             <%= tender_document_type(document.document_type) %>
           </span>
 
-          <%= link_to document.title, document_preview_path(document), target: '_blank' %>
+          <% if document.title == 'sign.p7s' %>
+            <%= link_to 'Електронний цифровий підпис', document_preview_path(document), target: '_blank' %>
+          <% else %>
+            <%= link_to document.title, document_preview_path(document), target: '_blank' %>
+          <% end %>
           <br/>
           <small class='muted'>
             <%= dt(document.date_modified) %>

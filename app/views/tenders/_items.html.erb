@@ -1,0 +1,43 @@
+<section class='items'>
+  <h3>Предмети закупівлі</h3>
+
+  <% items.each do |i| %>
+    <div class='ui segments'>
+      <div class='ui segment'>
+        <p><%= i['description'] %></p>
+
+        <% if @tender.lots.size > 0 || @tender.items.size == 1 %>
+          <div class='ui horizontal mini right floated statistic'>
+            <div class='value'>
+              <% if @tender.lots.empty? %>
+                <%= item_value_per_unit(@tender.bundle.data['value'], i['quantity']) %>
+              <% else %>
+                <%= item_value_per_unit(@tender.lots[i['relatedLot']]['value'], i['quantity']) %>
+              <% end %>
+            </div>
+            <div class='label'>за одиницю</div>
+          </div>
+        <% end %>
+
+        <div class='ui horizontal mini statistic'>
+          <div class='value'><%= number_with_delimiter(i['quantity']) %></div>
+          <div class='label'><%= item_unit(i['unit']) %></div>
+        </div>
+      </div>
+      <div class='ui secondary segment'>
+        <small>
+          <%= item_classification(i['classification']['scheme']) %>:
+          <%= i['classification']['id'] %> —
+          <%= i['classification']['description'] %>
+
+          <% i['additionalClassifications'].each do |c| %>
+            <br/>
+            <%= item_classification(c['scheme']) %>:
+            <%= c['id'] %> —
+            <%= c['description'] %>
+          <% end %>
+        </small>
+      </div>
+    </div>
+  <% end %>
+</section>

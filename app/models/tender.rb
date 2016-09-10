@@ -44,4 +44,24 @@ class Tender
   index(open_procurement_id: 1)
   index(date_modified: -1)
   index(date: -1)
+
+  ## Helpers
+
+  def bundle
+    @bundle ||= OpenProcurement::TenderBundle.find_by(open_procurement_id: open_procurement_id)
+  end
+
+  def lots
+    @lots ||= begin
+      hash = {}
+      (bundle.data['lots'] || []).each do |l|
+        hash[l['id']] = l
+      end
+      hash
+    end
+  end
+
+  def items
+    @items ||= (bundle.data['items'] || [])
+  end
 end

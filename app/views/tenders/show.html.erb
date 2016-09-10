@@ -14,7 +14,9 @@
   <div class='ten wide column'>
     <h2><%= @tender.title %></h2>
     <p><%= @tender.description %></p>
-
+    <% if @tender.items.size > 0 %>
+      <%= render partial: 'items', locals: { items: @tender.items } %>
+    <% end %>
     <%= render partial: 'documents', locals: { documents: @tender.documents } %>
   </div>
 
