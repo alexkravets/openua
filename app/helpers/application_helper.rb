@@ -19,7 +19,7 @@ module ApplicationHelper
 
   def amount(value, currency='')
     currency = currency_format(currency)
-    number_to_currency(value, unit: currency)
+    number_to_currency(value, unit: currency, precision: 0)
   end
 
   def tax_label(value)
