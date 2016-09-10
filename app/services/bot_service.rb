@@ -64,7 +64,7 @@ class BotService
   end
 
   def free_memory
-    output = %x(free-m)
+    output = %x(free -m)
     free = output.split(' ')[9]
     @telegram.send_message(@user_id, "#{free} MB")
   end
