@@ -30,6 +30,9 @@ class BotService
       elsif @text.start_with? '/help'
         @telegram.send_message(@user_id, HELP_MSG)
 
+      elsif @text.start_with? '/free'
+        free_memory
+
       else
         create_alert
 
@@ -58,5 +61,11 @@ class BotService
       @telegram.send_message(@user_id, TENDER_NOT_FOUND_MSG)
 
     end
+  end
+
+  def free_memory
+    output = %x(free-m)
+    free = output.split(' ')[9]
+    @telegram.send_message(@user_id, "#{free} MB")
   end
 end
