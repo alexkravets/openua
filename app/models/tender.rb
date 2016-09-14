@@ -1,6 +1,7 @@
 class Tender
   include Mongoid::Document
   include Mongoid::Search
+  include Mongoid::Timestamps
 
   ## Attributes
   field :open_procurement_id

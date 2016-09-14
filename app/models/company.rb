@@ -1,6 +1,7 @@
 class Company
   include Mongoid::Document
   include Mongoid::Search
+  include Mongoid::Timestamps
 
   ## Attributes
   field :name

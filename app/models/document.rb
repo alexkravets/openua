@@ -1,5 +1,6 @@
 class Document
   include Mongoid::Document
+  include Mongoid::Timestamps
 
   ## Attributes
   field :open_procurement_id
