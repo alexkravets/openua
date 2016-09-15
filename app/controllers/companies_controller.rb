@@ -13,4 +13,9 @@ class CompaniesController < ApplicationController
   def show
     @company = Company.find_by(company_id: params[:id])
   end
+
+  def set_search_config
+    @search_placeholder = 'Назва або код ЄДРПОУ компанії'
+    @search_action_path = companies_path
+  end
 end

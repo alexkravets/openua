@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>OpenUA Online</title>
+  <title>OpenUA.Online</title>
   <%= csrf_meta_tags %>
 
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'  %>
@@ -12,11 +12,8 @@
 </head>
 
 <body class='section-<%= @section %>'>
-  <section class='ui container'>
-    <aside class='ui right aligned basic segment'>
-      <small class='muted'>Оновлено: <%= @date_modified.in_time_zone %></small>
-    </aside>
-    <nav class='ui menu'>
+  <div class='ui container'>
+    <nav class='ui secondary menu' style='margin-top: 1em;'>
       <%= link_to 'Головна',
                   root_path,
                   class: "item#{ ' active' if @section == 'home' }" %>
@@ -28,8 +25,25 @@
       <%= link_to 'Компанії',
                   companies_path,
                   class: "item#{ ' active' if @section == 'companies' }" %>
+
+      <div class='item' style='width:50%;'>
+        <form class='ui action left icon input'
+              method='get'
+              action='<%= @search_action_path %>'>
+          <i class='search icon'></i>
+          <input type='text'
+                 name='search'
+                 placeholder='<%= @search_placeholder %>'
+                 value='<%= @search %>'>
+          <button type='submit' class='ui button'>Пошук</button>
+        </form>
+      </div>
     </nav>
     <%= yield %>
-  </section>
+
+    <aside class='ui center aligned basic segment'>
+      <small class='muted'>Оновлено: <%= @date_modified.in_time_zone %></small>
+    </aside>
+  </div>
 </body>
 </html>

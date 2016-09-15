@@ -4,14 +4,6 @@
 //= require application/home
 //= require_self
 
-.ui.container {
-  margin-bottom: 5em;
-}
-
-.ui.menu {
-  margin: 0 -1.15em 1em;
-}
-
 .ui.breadcrumb {
   display: block;
   line-height: 2;
@@ -34,16 +26,9 @@
   left: -2.9em;
 }
 
-// Custom classes
-
 .form-search {
   margin: 2em auto 1.5em;
   max-width: 45em;
-}
-
-aside.ui.segment {
-  padding-right: 0;
-  margin: 0 -0.5em 0;
 }
 
 .float-right {
@@ -68,21 +53,9 @@ aside.ui.segment {
   vertical-align: baseline;
 }
 
-body {
-  background-image: linear-gradient(#4183C4, #4183C4);
-  background-repeat: repeat-x;
-  background-size: 3px 3px;
-}
-
 @media only screen and (max-width: 767px) {
   .ui.table.very.padded td > .ui.ribbon.label {
     left: -2.05em;
-  }
-
-  .ui.menu {
-    border-radius: 0;
-    border-left: 0;
-    border-right: 0;
   }
 
   .ui.pagination.menu .item.page:not(.active) {
