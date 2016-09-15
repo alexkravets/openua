@@ -56,30 +56,6 @@
     </div>
 
     <div class='ui fluid card'>
-      <div class='content'>
-        <div class='header'>
-          <%= @tender.procuring_entity_name %>
-        </div>
-        <div class='meta'>
-          Код ЄДРПОУ: <%= @company.company_id %>
-        </div>
-        <div class='description'>
-          <%= address(@company) %>
-          <% if @company.uri %>
-            <br/>
-            <i class='linkify icon'></i>
-            <%= link_to lf(@company.uri), target: '_blank' do %>
-              <%= @company.uri %>
-            <% end %>
-          <% end %>
-        </div>
-        <br/>
-        <%= link_to company_path(@company.company_id),
-                    class: 'ui fluid basic primary button' do %>
-          Детальніше про компанію <i class='right chevron icon'></i>
-        <% end %>
-      </div>
-
       <%= render partial: 'company' %>
     </div>
   </aside>

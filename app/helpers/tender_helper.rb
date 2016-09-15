@@ -25,7 +25,7 @@ module TenderHelper
   end
 
   def document_preview_path(document)
-    "//docs.google.com/viewer?url=#{document.url}" # ?embedded=true&
+    "//docs.google.com/viewer?url=#{document.url}&embedded=true&"
   end
 
   def gravatar_image_url(email)

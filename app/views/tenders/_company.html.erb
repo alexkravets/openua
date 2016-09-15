@@ -1,4 +1,28 @@
 <div class='content'>
+  <div class='header'>
+    <%= @tender.procuring_entity_name %>
+  </div>
+  <div class='meta'>
+    Код ЄДРПОУ: <%= @company.company_id %>
+  </div>
+  <div class='description'>
+    <%= address(@company) %>
+    <% if @company.uri %>
+      <br/>
+      <i class='linkify icon'></i>
+      <%= link_to lf(@company.uri), target: '_blank' do %>
+        <%= @company.uri %>
+      <% end %>
+    <% end %>
+  </div>
+  <br/>
+  <%= link_to company_path(@company.company_id),
+              class: 'ui fluid basic primary button' do %>
+    Детальніше <i class='right chevron icon'></i>
+  <% end %>
+</div>
+
+<div class='content'>
   <%= image_tag gravatar_image_url(@contact.email),
                 class: 'ui right floated mini image' %>
 
@@ -10,7 +34,7 @@
                 "tel:#{@contact.telephone}" %>
     <br/>
 
-    <% if @contact.fax_number %>
+    <% if @contact.fax_number and not @contact.fax_number.strip.empty? %>
       <i class='fax icon'></i>
       <%= link_to number_to_phone(@contact.fax_number, area_code: true),
                   "tel:#{@contact.fax_number}" %>
@@ -20,7 +44,7 @@
     <i class='mail icon'></i>
     <%= link_to @contact.email, "mailto:#{@contact.email}" %><br/>
 
-    <% if @contact.url %>
+    <% if @contact.url and not @contact.url.strip.empty? %>
       <i class='linkify icon'></i>
       <%= link_to lf(@contact.url), @contact.url, target: '_blank' %><br/>
     <% end %>

@@ -1,3 +1,8 @@
+
+<div class='ui fullscreen basic modal document' id='documentModal'>
+  <div class='content'></div>
+</div>
+
 <table class='ui documents table'>
   <thead>
     <tr>
@@ -14,9 +19,11 @@
           </span>
 
           <% if document.title == 'sign.p7s' %>
-            <%= link_to 'Електронний цифровий підпис', document_preview_path(document), target: '_blank' %>
+            <%= link_to 'Електронний цифровий підпис', document.url,
+                        target: '_blank' %>
           <% else %>
-            <%= link_to document.title, document_preview_path(document), target: '_blank' %>
+            <%= link_to document.title, document_preview_path(document),
+                        class: 'js-document-link' %>
           <% end %>
           <br/>
           <small class='muted'>
