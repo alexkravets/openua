@@ -6,7 +6,8 @@
 #= require_tree .
 
 document.addEventListener 'turbolinks:load', ->
-  new Clipboard('.copy')
+  new Clipboard('.js-clipboard')
+
   $modal =$ '#documentModal'
   $modal.modal({ duration: 0 })
   $(document).on 'click', '.js-document-link', (e) ->
