@@ -1,0 +1,9 @@
+#!/bin/sh
+
+if [ "$*" == "" ]; then
+  echo "Please provide server host/ip, see: https://cloud.digitalocean.com/droplets"
+  exit 1
+fi
+
+HOST="$1"
+ssh root@$HOST "tail -n100 /home/rails/openua/log/production.log"

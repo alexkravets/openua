@@ -27,7 +27,7 @@
       <br/>
       <%= t.procuring_entity_name %>
       <br/>
-      <small class='muted'><%= l(t.date.in_time_zone, format: '%H:%M') %></small>
+      <small class='muted'><%= l(t.created_at.in_time_zone, format: '%H:%M') %></small>
       <small>/ <%= amount(t.value_amount, t.value_currency) %></small>
     </div>
   <% end %>
