@@ -52,15 +52,24 @@ module OpenProcurement
     def request(uri, params={})
       uri.query = URI.encode_www_form(params)
       ap "> #{uri}"
-      res = Net::HTTP.get_response(uri)
 
-      if res.is_a?(Net::HTTPSuccess)
-        res.body
-      else
-        ap 'Woops, request has failed.'
-        ap res
-        nil
+      (1..10).each do |n|
+        res = Net::HTTP.get_response(uri)
+
+        if res.is_a?(Net::HTTPSuccess)
+          return res.body
+
+        else
+          ap 'Woops, request has failed.'
+          if n < 10
+            ap "Waiting #{n} seconds..."
+            sleep(n.second)
+          end
+
+        end
       end
+
+      exit(1)
     end
 
     def parse(json)
