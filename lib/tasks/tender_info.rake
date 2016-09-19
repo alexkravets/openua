@@ -2,14 +2,13 @@ namespace :openua do
   desc 'Sync models with OP data'
   task :sync => :environment do
     loop do
-      bundles = OpenProcurement::TenderBundle.model_not_in_sync.limit(20).to_a
+      bundles = OpenProcurement::TenderBundle.model_not_in_sync.limit(100).to_a
       break if bundles.empty?
 
       bundles.each do |tender_bundle|
         TenderDataService.new(tender_bundle).update!
         tender_bundle.update_attribute(:model_in_sync, true)
       end
-      sleep 1.second
     end
   end
 
