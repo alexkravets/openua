@@ -42,30 +42,34 @@ module OpenProcurement
     end
 
     def sync_bundles_data
-      bundles = TenderBundle.data_not_in_sync.to_a
-      bundles.each do |b|
-        res = client.tender(b.open_procurement_id)
-        data = res['data']
+      loop do
+        bundles = TenderBundle.data_not_in_sync.limit(100).to_a
+        break if bundles.empty?
 
-        if data['auctionUrl']
-          auction_url = data['auctionUrl'].gsub('tenders', 'auctions')
-          auction_res = client.auction(auction_url)
-          data['auction'] = auction_res unless auction_res.nil?
-        end
+        bundles.each do |b|
+          res = client.tender(b.open_procurement_id)
+          data = res['data']
 
-        if data['lots']
-          data['lots'].each do |l|
-            if l['auctionUrl']
-              auction_url = l['auctionUrl'].gsub('tenders', 'auctions')
-              auction_res = client.auction(auction_url)
-              l['auction'] = auction_res unless auction_res.nil?
+          if data['auctionUrl']
+            auction_url = data['auctionUrl'].gsub('tenders', 'auctions')
+            auction_res = client.auction(auction_url)
+            data['auction'] = auction_res unless auction_res.nil?
+          end
+
+          if data['lots']
+            data['lots'].each do |l|
+              if l['auctionUrl']
+                auction_url = l['auctionUrl'].gsub('tenders', 'auctions')
+                auction_res = client.auction(auction_url)
+                l['auction'] = auction_res unless auction_res.nil?
+              end
             end
           end
-        end
 
-        b.update_attributes! data: data,
-                             data_in_sync: true,
-                             model_in_sync: false
+          b.update_attributes! data: data,
+                               data_in_sync: true,
+                               model_in_sync: false
+        end
       end
     end
   end
