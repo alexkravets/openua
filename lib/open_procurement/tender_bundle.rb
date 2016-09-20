@@ -5,7 +5,6 @@ module OpenProcurement
     ## Attributes
     field :open_procurement_id
     field :date_modified
-
     field :data, type: Hash, default: {}
     field :data_in_sync, default: false
     field :model_in_sync, default: false
@@ -22,5 +21,7 @@ module OpenProcurement
     ## Indexes
     index({ open_procurement_id: 1 }, background: true)
     index({ date_modified: -1 }, background: true)
+    index({ data_in_sync: -1 }, background: true)
+    index({ model_in_sync: -1 }, background: true)
   end
 end

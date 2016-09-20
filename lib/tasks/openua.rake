@@ -7,7 +7,7 @@ namespace :openua do
 
       bundles.each do |tender_bundle|
         TenderDataService.new(tender_bundle).update!
-        tender_bundle.update_attribute(:model_in_sync, true)
+        tender_bundle.set model_in_sync: true
       end
     end
   end
