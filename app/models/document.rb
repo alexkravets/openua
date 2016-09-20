@@ -20,6 +20,6 @@ class Document
   default_scope -> { asc(:date_modified) }
 
   ## Indexes
-  index(open_procurement_id: 1)
-  index({ open_procurement_id: 1, date_modified: 1 })
+  index({ open_procurement_id: 1 }, background: true)
+  index({ open_procurement_id: 1, date_modified: 1 }, background: true)
 end

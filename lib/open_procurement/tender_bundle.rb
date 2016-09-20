@@ -20,6 +20,6 @@ module OpenProcurement
     scope :model_not_in_sync, -> { where(model_in_sync: false) }
 
     ## Indexes
-    index({ date_modified: -1 })
+    index({ date_modified: -1 }, background: true)
   end
 end

@@ -42,9 +42,9 @@ class Tender
   search_in :title, :tender_id, :open_procurement_id, :procuring_entity_name
 
   ## Indexes
-  index(open_procurement_id: 1)
-  index(date_modified: -1)
-  index(created_at: -1)
+  index({ open_procurement_id: 1 }, background: true)
+  index({ date_modified: -1 }, background: true)
+  index({ created_at: -1 }, background: true)
 
   ## Helpers
 
