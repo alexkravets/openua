@@ -66,9 +66,9 @@ module OpenProcurement
             end
           end
 
-          b.update_attributes! data: data,
-                               data_in_sync: true,
-                               model_in_sync: false
+          b.set data: data,
+                data_in_sync: true,
+                model_in_sync: false
         end
       end
     end
