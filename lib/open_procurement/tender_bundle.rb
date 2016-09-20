@@ -20,6 +20,7 @@ module OpenProcurement
     scope :model_not_in_sync, -> { where(model_in_sync: false) }
 
     ## Indexes
+    index({ open_procurement_id: 1 }, background: true)
     index({ date_modified: -1 }, background: true)
   end
 end

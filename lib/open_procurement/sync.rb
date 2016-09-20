@@ -12,8 +12,8 @@ module OpenProcurement
       loop do
         res = client.tenders(params: params)
 
-        params[:offset] = res["next_page"]["offset"]
-        data = res["data"]
+        params[:offset] = res['next_page']['offset']
+        data = res['data']
         break if data.empty?
         update_bundles(data)
       end
@@ -29,8 +29,10 @@ module OpenProcurement
 
     def update_bundles(data)
       data.each do |entry|
-        id = entry["id"]
-        date_modified = entry["dateModified"]
+        id = entry['id']
+        date_modified = entry['dateModified']
+        # TODO: refator this to get whole page in one query, update existing and
+        #       create new bundles.
         tb = TenderBundle.find_or_create_by(open_procurement_id: id)
         unless tb.date_modified == date_modified
           tb.set date_modified: date_modified,
@@ -43,6 +45,7 @@ module OpenProcurement
 
     def sync_bundles_data
       loop do
+        # TODO: refator this to consume less memory, by using :only attribute.
         bundles = TenderBundle.data_not_in_sync.limit(100).to_a
         break if bundles.empty?
 
