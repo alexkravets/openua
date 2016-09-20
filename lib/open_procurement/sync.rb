@@ -33,9 +33,9 @@ module OpenProcurement
         date_modified = entry["dateModified"]
         tb = TenderBundle.find_or_create_by(open_procurement_id: id)
         unless tb.date_modified == date_modified
-          tb.update_attributes! date_modified: date_modified,
-                                data_in_sync: false,
-                                model_in_sync: false
+          tb.set date_modified: date_modified,
+                 data_in_sync: false,
+                 model_in_sync: false
           ap "    #{id} — #{date_modified}"
         end
       end
