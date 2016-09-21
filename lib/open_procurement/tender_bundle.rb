@@ -11,7 +11,7 @@ module OpenProcurement
 
     ## Validations
     validates :open_procurement_id, presence: true
-    validates :date_modified, presence: true
+    #validates :date_modified, presence: true
 
     ## Scopes
     default_scope -> { desc(:date_modified) }
